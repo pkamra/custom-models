@@ -57,6 +57,19 @@ def train():
         scaler = StandardScaler()
         X_train_scaled = scaler.fit_transform(X_train)
         X_test_scaled = scaler.transform(X_test)
+        
+        
+        # Convert scaled training data back to DataFrame for easy inspection
+        X_train_scaled_df = pd.DataFrame(X_train_scaled, columns=features_to_standardize)
+        X_test_scaled_df = pd.DataFrame(X_test_scaled, columns=features_to_standardize)
+
+        # Print the first few rows of the scaled DataFrame
+        print("Scaled Training Data:")
+        print(X_train_scaled_df.head())
+
+        print("\nScaled Testing Data:")
+        print(X_test_scaled_df.head())
+        
 
         # Save the scaler
         scaler_filename = os.path.join(model_path, 'scaler.joblib')

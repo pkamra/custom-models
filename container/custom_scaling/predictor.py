@@ -50,8 +50,19 @@ class ScalerService(object):  # Renamed from ScoringService to ScalerService
         features_to_standardize = ['Age', 'Annual Income', 'Credit Score',
                                    'Years at Current Residence', 'Number of Defaults', 'Loan Amount'] + list(employment_status_encoded.columns)
 
+        # Print the DataFrame before scaling
+        print("DataFrame before scaling:")
+        print(input[features_to_standardize].head())  # Print the first few rows
+
         # Scale the input data using the scaler
         input_scaled = scaler.transform(input[features_to_standardize])
+        
+        # Print the DataFrame after scaling
+        # Convert the scaled data back to a DataFrame for easy inspection
+        input_scaled_df = pd.DataFrame(input_scaled, columns=features_to_standardize)
+        print("DataFrame after scaling:")
+        print(input_scaled_df.head())  # Print the first few rows
+
 
         return input_scaled
 
